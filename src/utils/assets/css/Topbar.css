@@ -1,0 +1,96 @@
+.animenu {
+  display: inline-block;
+  margin: 0 auto;
+  margin-top: 0px;
+  list-style-type: none;
+}
+
+.animenu a {
+  display: block;
+  margin: 0;
+  padding: 16px 25px;
+  color: #333;
+  text-decoration: none;
+  background-color: #fff;
+}
+
+.animenu li {
+  position: relative;
+  float: left;
+  margin: 0;
+  border-left: 1px solid #eee;
+  perspective: 200;
+}
+
+.animenu li:first-child {
+  border-left: none;
+}
+
+.animenu li.parent:before {
+  content: '';
+  z-index: 200;
+  position: fixed;
+  top: 100%;
+  left: 50%;
+  margin-top: -4px;
+  margin-left: -20px;
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 20px 0 20px;
+  border-color: #fff transparent transparent transparent;
+  transition: margin-top .1s ease-out;
+}
+
+.animenu li:hover > a, .animenu li:focus > a {
+  text-decoration: none;
+  color: #fff;
+  background-color: #333;
+}
+
+.animenu li:hover:before, .animenu li:focus:before {
+  margin-top: 0;
+  border-top-color: #333;
+}
+
+.animenu li:hover .children, .animenu li:focus .children {
+  opacity: 1;
+  transform: rotateX(0) translateZ(0);
+}
+
+.animenu .children {
+  opacity: 0;
+  backface-visibility: hidden;
+  transform: rotateX(-90deg);
+  transform-style: preserve-3d;
+  transform-origin: top center;
+  transition: opacity 0.1s 0.1s, -webkit-transform 0.4s cubic-bezier(0.17, 0.67, 0.59, 1.21);
+  transition: transform 0.4s cubic-bezier(0.17, 0.67, 0.59, 1.21), opacity 0.1s 0.1s;
+  transition: transform 0.4s cubic-bezier(0.17, 0.67, 0.59, 1.21), opacity 0.1s 0.1s, -webkit-transform 0.4s cubic-bezier(0.17, 0.67, 0.59, 1.21);
+  z-index: 1000;
+  list-style-type: none;
+  position: fixed;
+  top: 100%;
+  left: 0;
+  width: 200px;
+  margin: 0;
+  padding: 10px 0;
+  background-color: #fff;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.animenu .children li {
+  float: none;
+}
+
+.animenu .children a {
+  background-color: transparent;
+}
+
+.animenu .children a:hover, .animenu .children a:focus {
+  color: #333;
+  background-color: #f9f9f9;
+}
+
